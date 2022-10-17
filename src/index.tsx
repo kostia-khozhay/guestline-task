@@ -1,20 +1,39 @@
-import React from 'react';
+import React  from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import { setupStore } from 'app/store';
+import { App } from 'App';
 import reportWebVitals from './reportWebVitals';
+import { ToastContainer } from 'react-toastify';
+
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
+const store = setupStore();
+
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={store}>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
       <App />
     </Provider>
-  </React.StrictMode>
+  </React.Fragment>,
 );
 
 // If you want to start measuring performance in your app, pass a function
